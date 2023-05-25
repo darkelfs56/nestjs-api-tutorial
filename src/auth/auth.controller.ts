@@ -3,6 +3,7 @@ import { AuthService } from './auth.service';
 import { AuthDto } from './dto';
 
 //NestJS uses dto, data transfer object
+// it is better to use class rather than interface to type the dto
 //Pipes are functions that transform your data
 
 @Controller('auth')
@@ -14,11 +15,11 @@ export class AuthController {
     console.log({
       dto,
     });
-    return this.authService.signup();
+    return this.authService.signup(dto);
   }
 
   @Post('login')
-  login() {
-    return this.authService.login();
+  login(@Body() dto: AuthDto) {
+    return this.authService.login(dto);
   }
 }
